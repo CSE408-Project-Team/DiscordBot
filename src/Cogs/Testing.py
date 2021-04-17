@@ -61,6 +61,11 @@ class Testing(commands.Cog):
         await ctx.send(f"**Count = {len(args)}.** \n" + " ".join(args))
         print(args)
 
+    @commands.command()
+    async def quit(self, ctx):
+        await ctx.send(f"**Quitting...**")
+        quit()
+
 
 
 def setup(bot):

@@ -1,10 +1,13 @@
 
 import os
 import json
-from pathlib import Path
-
+import warnings
 import discord
+from pathlib import Path
 from Bot import Bot
+
+
+warnings.filterwarnings("ignore", message=r"Passing", category=FutureWarning)
 
 
 with open('./config.json') as f:
