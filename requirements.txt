@@ -4,3 +4,4 @@ nltk
 tensorflow = 2.0
 joblib 
 streamlit 
+discord
