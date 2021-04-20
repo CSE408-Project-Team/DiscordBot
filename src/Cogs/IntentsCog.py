@@ -19,7 +19,7 @@ class IntentsCog(commands.Cog):
     @commands.command()
     async def getIntent(self, ctx, *text):
         text = " ".join(text)
-        await ctx.send(Intent.classifyLocal(text)[0])
+        await ctx.send(Intent.classifyText(text)[0])
 
     @commands.command()
     async def getConfidence(self, ctx, *text):

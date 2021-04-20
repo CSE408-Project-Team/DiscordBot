@@ -67,7 +67,7 @@ for doc in docs:
 random.shuffle(training)
 training = numpy.array(training)
 trainX = list(training[:,0])    # Patterns
-trainY = list(training[:,1])    # Intents
+trainY = list(training[:,1])    # Intents 
 
 
 # Create a Model with 3 layers
@@ -76,6 +76,7 @@ model.add(Dense(128, input_shape=(len(trainX[0]),), activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
+# Softmax is conventionally used as the last activation function of a neural network
 model.add(Dense(len(trainY[0]), activation='softmax'))
 
 # Optimizer for model
@@ -109,12 +110,11 @@ def bagOfWords(text: str, words: List[str]):
     return(numpy.array(bag))
 
 
-def classifyLocal(text: str):
-    ERROR_THRESHOLD = 0.25
+def classifyText(text: str):
     
     inputData = pd.DataFrame([bagOfWords(text, words)], dtype=float, index=['input'])
     results = model.predict([inputData])[0]
-    results = [[i,r] for i,r in enumerate(results) if r>ERROR_THRESHOLD]
+    results = [[i,r] for i,r in enumerate(results) if r > 0.25]
 
     results.sort(key=lambda x: x[1], reverse=True)
     returnList = []
@@ -125,7 +125,7 @@ def classifyLocal(text: str):
 
 
 def getResponse(text: str):
-    returnList = classifyLocal(text)
+    returnList = classifyText(text)
     print(returnList)
     responses = []
     

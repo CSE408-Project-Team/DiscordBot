@@ -35,5 +35,4 @@ if __name__ == "__main__":
         if file.endswith(".py") and not file.startswith("_"):
             Bot.load_extension(f"Cogs.{file[:-3]}")
 
-    # TODO hide the token in a JSON or env file later 
     Bot.run(token)
